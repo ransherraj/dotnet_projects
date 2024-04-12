@@ -1,0 +1,123 @@
+﻿@model IEnumerable<NewsWebAPI.Models.AddUserResponse>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create User</h1>
+<hr class="border-5 m-5 opacity-25 border-dark" />
+<p>
+    <a class="btn btn-warning" asp-controller="User" asp-action="Index">Users List</a>
+    
+</p>
+
+@foreach (var item in Model)
+{
+    @if (item.statusCode == "100")
+    {
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>@Html.DisplayFor(modelItem => item.statusMessage), </strong>Status Code: @Html.DisplayFor(modelItem => item.statusCode)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+        </div>
+
+    }
+    else
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>@Html.DisplayFor(modelItem => item.statusMessage), </strong>Status Code: @Html.DisplayFor(modelItem => item.statusCode)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+        </div>
+    }
+
+}
+
+<form method="post" action="/CreateUser">
+    <div class="container m-5">
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">User Id</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="UserId" name="UserId" value="" />
+            </div>
+        </div>
+
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">User Name</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="UserName" value="" />
+            </div>
+        </div>
+
+
+        @*<div class="row mb-3">
+            <label class="col-sm-3 col-form-label">User created By</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="UserCreatedBy" value="" />
+            </div>
+        </div>*@
+
+
+        @*<div class="row mb-3">
+            <label class="col-sm-3 col-form-label">User Modified by</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="UserModifiedBy" value="" />
+            </div>
+        </div>*@
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">User IsActive</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="UserIsactive" value="" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="offset-sm-3 col-sm-3 d-grid">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="col-sm-3 d-grid">
+                <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<hr class="border-5 m-5 opacity-25 border-dark" />
+
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.statusCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.statusMessage)
+            </th>
+            @*<th></th>*
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.statusCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.statusMessage)
+            </td>
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>*
+        </tr>
+}
+    </tbody>
+</table>
+*@
+
+
+
+<script>$('.alert').alert()</script>

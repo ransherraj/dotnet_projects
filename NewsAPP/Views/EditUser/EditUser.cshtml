@@ -1,0 +1,65 @@
+﻿@model NewsAPP.Models.AddUser
+
+@{
+    ViewData["Title"] = "EditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit User</h1>
+<hr class="border-5 m-5 opacity-25 border-dark" />
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditUser">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="UserCreatedDate" class="control-label"></label>
+                <input asp-for="UserCreatedDate" class="form-control" />
+                <span asp-validation-for="UserCreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserCreatedBy" class="control-label"></label>
+                <input asp-for="UserCreatedBy" class="form-control" />
+                <span asp-validation-for="UserCreatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserModifiedDate" class="control-label"></label>
+                <input asp-for="UserModifiedDate" class="form-control" />
+                <span asp-validation-for="UserModifiedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserModifiedBy" class="control-label"></label>
+                <input asp-for="UserModifiedBy" class="form-control" />
+                <span asp-validation-for="UserModifiedBy" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="UserIsactive" class="control-label"></label>
+                <input asp-for="UserIsactive" class="form-control" />
+                <span asp-validation-for="UserIsactive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Click to Edit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-warning" asp-controller="User" asp-action="Index">Users List</a>   
+</div>
+<hr class="border-5 m-5 opacity-25 border-dark" />
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

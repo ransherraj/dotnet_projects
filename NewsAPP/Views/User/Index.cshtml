@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FirstAPI.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container text-center">
+    <h1 style="color:green">User Data</h1>
+    <hr class="border-5 m-5 opacity-25 border-dark" />
+    <p>
+        @*<a class="button" asp-controller="CreateUser" asp-action="Index">Create New User</a>*@
+        <a class="btn btn-success" asp-controller="CreateUser" asp-action="Index">Create New User</a>
+    </p>
+    <hr class="border-5 m-5 opacity-25 border-dark" />
+    <h3>Please Get @Html.DisplayNameFor(model => model.Id) with @Html.DisplayNameFor(model => model.Name) </h3>
+</div>
+
+
+@*<div class="container align-content-center form-control-color">*@
+
+<div class="row">
+@foreach (var item in Model)
+{
+
+  
+        <div class="card m-5 mt-3" style="width: 30rem;">
+            <div class="col">
+            <img class="card-img-top " src="https://source.unsplash.com/random/200x200?sig={@Html.DisplayFor(modelItem => item.Id)}" alter="Card image cap">
+            <div class="card-body">
+                <h5 class="card-id">User Id : @Html.DisplayFor(modelItem => item.Id)</h5>
+                <h5 class="card-title">User Name : @Html.DisplayFor(modelItem => item.Name)</h5>
+
+                    <a class="btn btn-warning" @Html.ActionLink("Edit user", "EditUser","EditUser", new {id = item.Id}) ></a>
+                    <a class="btn btn-danger" @Html.ActionLink("Delete user", "DeleteUser","DeleteUser", new {id = item.Id})></a>
+            </div>
+        </div>
+        </div>
+        
+   
+}
+</div>
+
+<hr class="border-5 m-5 opacity-25 border-dark" />
+@*</div>*@

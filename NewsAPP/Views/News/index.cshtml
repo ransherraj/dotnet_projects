@@ -1,0 +1,116 @@
+﻿@model IEnumerable<FirstAPI.Models.NewsDetail>
+
+@{
+    ViewData["Title"] = "News";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h1>News</h1>*@
+
+<div class="container text-center">
+    <h1 style="color:green ">News Data</h1>
+    <hr class="border-5 m-5 opacity-25 border-dark"/>
+    <p>
+        <a class="btn btn-success" asp-controller="CreateNews" asp-action="Index">Create New News</a>
+    </p>
+</div>
+
+
+
+<form method="post" action="/News">
+    <div class="container m-5">
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">User Id</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="user_id" value="" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="offset-sm-3 col-sm-3 d-grid">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="col-sm-3 d-grid">
+                <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+
+<div class="row">
+@foreach (var item in Model)
+{
+
+       
+            <div class="card m-5" style="width: 30rem;">
+                <div class="col">
+                    <img class="card-img-top" src="https://source.unsplash.com/random/200x200?sig={random.Next(1, 10)}" alter="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-id">User Name : @Html.DisplayFor(modelItem => item.user_name)</h5>
+                        <h5 class="card-title">Category Name : @Html.DisplayFor(modelItem => item.category_name)</h5>
+
+                        <h5 class="card-text">News Content : @Html.DisplayFor(modelItem => item.news_content)</h5>
+                        <h5 class="card-footer text-muted">Date : @Html.DisplayFor(modelItem => item.news_date)</h5>
+
+                    @*<a class="btn btn-success" href="@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })"></a>
+                <a class="btn btn-danger" href="@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })"></a>*@
+
+                        <a class="btn btn-success" asp-action="Edit/id=@Html.DisplayFor(modelItem => item.user_name)">Edit</a>
+                        <a class="btn btn-danger" asp-action="Delete/id=@Html.DisplayFor(modelItem => item.user_name)">Delete</a>
+
+                    </div>
+                </div>
+            </div>
+
+        
+}
+</div>
+<hr class="border-5 m-5 opacity-25 border-dark" />
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.user_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.category_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.news_content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.news_date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.category_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.news_content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.news_date)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+*@
+
